@@ -1,3 +1,6 @@
+# Queries the SYS_PARAMS table of a specified database
+# Exports the results to a spreadsheet to generate the DasFactsSheet
+
 import sys, os, openpyxl, pymssql
 from openpyxl.utils import get_column_letter
 

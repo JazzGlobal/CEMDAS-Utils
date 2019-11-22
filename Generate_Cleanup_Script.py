@@ -1,3 +1,5 @@
+# Generates SQL Scripts to perform the final clean up procedures for CEMDAS clients
+# !!Use caution when running the SQL scripts and be sure to double check the results!!
 import sys
 import os
 try:
