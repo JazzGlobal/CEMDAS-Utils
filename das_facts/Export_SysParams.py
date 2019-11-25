@@ -20,7 +20,7 @@ prefix_path = f'C:\\Users\\{os.getlogin()}\\Desktop\\Generated_Scripts\\' # Loca
 try: # Attempt to create directory. Continues script if directory already exists.
     os.mkdir(prefix_path)
 except FileExistsError:
-    print(f'{prefix_path} already exists, continuing script.')
+    print(f'Directory {prefix_path} already exists, continuing script.')
 
 workbook_path = f'{prefix_path}template_DasFacts.xlsx' # Path of workbook template. 
 work_book = openpyxl.load_workbook(workbook_path)
