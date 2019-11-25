@@ -4,19 +4,19 @@
 import sys, os, openpyxl, pymssql
 from openpyxl.utils import get_column_letter
 
-databaseName = input('Enter the name of the Sys1 database (Without Sys1)')
-conn = pymssql.connect(
+database_name = input('Enter the name of the Sys1 database (Without Sys1)')
+connection = pymssql.connect(
                 server=f"{os.getlogin()}\\SQLEXPRESS",
                 port=1433,
                 user="sa",
                 password="sa123",
-                database=(f'{databaseName}Sys1'))
+                database=(f'{database_name}Sys1'))
 
 prefix_path = f'C:\\Users\\{os.getlogin()}\\Desktop\\Generated_Scripts\\'
 worksheet_path = f'{prefix_path}template_DasFacts.xlsx'
-wb = openpyxl.load_workbook(worksheet_path)
-sheet = wb['Sheet1']
-cursor = conn.cursor()
+work_book = openpyxl.load_workbook(worksheet_path)
+sheet = work_book['Sheet1']
+cursor = connection.cursor()
 
 def GetSystemParameters():
     cursor.execute('SELECT * FROM SYS_PARAMS')
@@ -41,10 +41,10 @@ def GetSystemParameters():
 
 toExport = GetSystemParameters()
 
-for x in range(len(toExport)):
-    for y in range(len(toExport[x])):
-        column_letter = get_column_letter(y+1)
-        sheet[f'{column_letter}{x+2}'] = list(toExport[x].values())[y] # We use x+2 as the index to start AFTER Row 1. 
+for parameter in range(len(toExport)):
+    for db_field in range(len(toExport[parameter])):
+        column_letter = get_column_letter(db_field+1)
+        sheet[f'{column_letter}{parameter+2}'] = list(toExport[parameter].values())[db_field] # We use x+2 as the index to start AFTER Row 1. 
 
-wb.save(f'{prefix_path}{databaseName}DasFacts.xlsx')
-conn.close()
+work_book.save(f'{prefix_path}{database_name}DasFacts.xlsx')
+connection.close()
