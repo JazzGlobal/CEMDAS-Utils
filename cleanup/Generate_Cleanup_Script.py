@@ -1,6 +1,6 @@
 # Generates SQL Scripts to perform the final clean up procedures for CEMDAS clients
 # !! Use caution when running the SQL scripts and be sure to double check the results !!
-import sys, os
+import sys, os, datetime
 prefix_path = f'C:\\Users\\{os.getlogin()}\\Desktop\\Generated_Scripts\\'
 
 try: # Attempt to create directory. Continues script if directory already exists.
@@ -26,4 +26,8 @@ script.write(f'{sql_string}')
 
 # Write to Application Log file.
 application_log = open('application_log.log', 'a')
-application_log.write(sql_string)
+application_log.write('--------------------\n')
+application_log.write(f'Wrote to SQL Script on {str(datetime.datetime.now())}\n')
+application_log.write('====================\n')
+application_log.write(f'{sql_string}\n')
+application_log.write('--------------------\n')
