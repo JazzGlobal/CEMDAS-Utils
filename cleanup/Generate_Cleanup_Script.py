@@ -21,7 +21,7 @@ sql_string+= f'TRUNCATE TABLE SYS_LOG;\n'
 sql_string+= f'TRUNCATE TABLE ERROR_LOG;\n'
 
 # Write to SQL Script
-script = open(f'{prefix_path}cleanup.sql', 'w+')
+script = open(f'{prefix_path}\\{sys_database_name}\\cleanup.sql', 'w+')
 script.write(f'{sql_string}')
 
 # Write to Application Log file.
