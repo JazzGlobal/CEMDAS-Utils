@@ -22,7 +22,9 @@ cursor.execute('SELECT * FROM SYS_PARAMS')
 def queryDatabase():
     sqlData = []
     for row in cursor.fetchall():  
-        dataRow = {
+        dataRow = { 
+            # Adding the correct SQL Database field into our dictionary. 
+            #Key in the dictionary: SQL Database Column data.
             "param_index": row[0],
             "param_name": row[1],
             "site": row[2],
