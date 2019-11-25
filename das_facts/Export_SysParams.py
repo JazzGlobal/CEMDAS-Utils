@@ -29,9 +29,9 @@ cursor = connection.cursor()
 
 def GetSystemParameters():
     cursor.execute('SELECT * FROM SYS_PARAMS')
-    sqlData = []
+    sysParamData = []
     for row in cursor.fetchall():  
-        dataRow = { 
+        sqlRow = { 
             # Adding the correct SQL Database field into our dictionary. 
             # FORMAT:
             # Key in the dictionary: SQL Database Column data.
@@ -46,8 +46,8 @@ def GetSystemParameters():
             "unit_conversion": row[39],
             "data_source": row[40],
         }
-        sqlData.append(dataRow)
-    return sqlData
+        sysParamData.append(sqlRow)
+    return sysParamData
 
 # Create Sys_Param List
 toExport = GetSystemParameters()
