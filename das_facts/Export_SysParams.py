@@ -24,7 +24,7 @@ def queryDatabase():
     for row in cursor.fetchall():  
         dataRow = { 
             # Adding the correct SQL Database field into our dictionary. 
-            #Key in the dictionary: SQL Database Column data.
+            # Key in the dictionary: SQL Database Column data.
             "param_index": row[0],
             "param_name": row[1],
             "site": row[2],
