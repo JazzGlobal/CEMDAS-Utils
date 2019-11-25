@@ -17,5 +17,5 @@ COLOR 7C
     ECHO "If this is not desired, exit the script now by click the X button or by pressing CTRL+C"
     PAUSE
     MKDIR %P%
-    sqlcmd -E -S .\SQLEXPRESS -i "./backup.sql" -v database="%M%" -v filepath="%P%\%M%">> ScriptLog.log
+    sqlcmd -E -S .\SQLEXPRESS -i "./backup.sql" -v database="%M%" -v filepath="%P%\%M%">> BackupLog.log
     PAUSE
