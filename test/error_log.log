@@ -1,0 +1,13 @@
+
+------------------------------
+(18456, b"Login failed for user 'sa'.DB-Lib error message 20018, severity 14:\nGeneral SQL Server error: Check messages from the SQL Server\nDB-Lib error message 20002, severity 9:\nAdaptive Server connection failed (cgambrell\\SQLEXPRESS)\n")
+Could not connect to SQL Server.
+2019-11-25 12:08:44.767163
+------------------------------
+(18456, b"Login failed for user 'sa'.DB-Lib error message 20018, severity 14:\nGeneral SQL Server error: Check messages from the SQL Server\nDB-Lib error message 20002, severity 9:\nAdaptive Server connection failed (cgambrell\\SQLEXPRESS)\n")
+Could not connect to SQL Server.
+2019-11-25 12:08:49.012311
+------------------------------
+(18456, b"Login failed for user 'sa'.DB-Lib error message 20018, severity 14:\nGeneral SQL Server error: Check messages from the SQL Server\nDB-Lib error message 20002, severity 9:\nAdaptive Server connection failed (cgambrell\\SQLEXPRESS)\n")
+Could not connect to SQL Server.
+2019-11-25 12:08:59.333219
