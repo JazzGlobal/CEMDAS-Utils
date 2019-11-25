@@ -66,8 +66,9 @@ for parameter in range(len(params_to_export)):
 
 try:
     work_book.save(f'{prefix_path}{database_name}DasFacts.xlsx')
+    print(f'{prefix_path}{database_name}DasFacts.xlsx has been created')
 except Exception as err:
-    error_string = f'ERROR: An error occurred while saving the {database_name}DasFacts.xlsx. It is likely that it already existed and was open in Excel. Close Excel and try again.'
+    error_string = f'''ERROR: An error occurred while saving the {database_name}DasFacts.xlsx. It is likely that it already existed and was open in Excel. Close Excel and try again. \n\n An error log has been created in: \n{prefix_path}\n'''
     print(error_string)
     log = open(f'{prefix_path}das_facts.log', 'a')
     log.write(f'{str(datetime.datetime.now())}\n')
