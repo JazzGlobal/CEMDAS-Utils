@@ -15,14 +15,20 @@ connection = pymssql.connect(
                 database=(f'{database_name}Sys1'))
 
 # File Location Configuration. 
-prefix_path = f'C:\\Users\\{os.getlogin()}\\Desktop\\Generated_Scripts\\' # Location of all generated files. 
+prefix_path_parent = f'C:\\Users\\{os.getlogin()}\\Desktop\\Generated_Scripts\\' # Location of all generated files. 
+prefix_path = f'C:\\Users\\{os.getlogin()}\\Desktop\\Generated_Scripts\\{database_name}\\' # Location of das facts sheet file. 
+
+try: # Attempt to create directory. Continues script if directory already exists.
+    os.mkdir(prefix_path_parent)
+except FileExistsError:
+    print(f'Directory {prefix_path_parent} already exists, continuing script.')
 
 try: # Attempt to create directory. Continues script if directory already exists.
     os.mkdir(prefix_path)
 except FileExistsError:
     print(f'Directory {prefix_path} already exists, continuing script.')
 
-workbook_path = f'{prefix_path}template_DasFacts.xlsx' # Path of workbook template. 
+workbook_path = f'{prefix_path_parent}template_DasFacts.xlsx' # Path of workbook template. 
 work_book = openpyxl.load_workbook(workbook_path)
 sheet = work_book['Sheet1']
 cursor = connection.cursor()
