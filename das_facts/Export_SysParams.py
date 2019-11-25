@@ -4,7 +4,7 @@
 import sys, os, openpyxl, pymssql
 from openpyxl.utils import get_column_letter
 
-database_name = input('Enter the name of the Sys1 database (Without Sys1)')
+database_name = input('Enter the name of the Sys1 database (Without Sys1): ')
 
 # Database Connection Configuration
 connection = pymssql.connect(
