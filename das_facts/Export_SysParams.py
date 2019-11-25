@@ -19,7 +19,7 @@ sheet = wb['Sheet1']
 cursor = conn.cursor()
 cursor.execute('SELECT * FROM SYS_PARAMS')
 
-def queryDatabase():
+def GetSystemParameters():
     sqlData = []
     for row in cursor.fetchall():  
         dataRow = { 
@@ -39,12 +39,12 @@ def queryDatabase():
         sqlData.append(dataRow)
     return sqlData
 
-toExport = queryDatabase()
+toExport = GetSystemParameters()
 
 for x in range(len(toExport)):
     for y in range(len(toExport[x])):
         column_letter = get_column_letter(y+1)
-        sheet[f'{column_letter}{x+2}'] = list(toExport[x].values())[y]
+        sheet[f'{column_letter}{x+2}'] = list(toExport[x].values())[y] # We use x+2 as the index to start AFTER Row 1. 
 
 wb.save(f'{prefix_path}newDasFacts.xlsx')
 conn.close()
