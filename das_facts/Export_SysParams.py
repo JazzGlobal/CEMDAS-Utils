@@ -50,13 +50,13 @@ def GetSystemParameters():
     return sysParamData
 
 # Create Sys_Param List
-toExport = GetSystemParameters()
+params_to_export = GetSystemParameters()
 
 # Iterate through Sys_Params list.
-for parameter in range(len(toExport)):
-    for db_field in range(len(toExport[parameter])):
+for parameter in range(len(params_to_export)):
+    for db_field in range(len(params_to_export[parameter])):
         column_letter = get_column_letter(db_field+1)
-        sheet[f'{column_letter}{parameter+2}'] = list(toExport[parameter].values())[db_field] # We use x+2 as the index to start AFTER Row 1. 
+        sheet[f'{column_letter}{parameter+2}'] = list(params_to_export[parameter].values())[db_field] # We use x+2 as the index to start AFTER Row 1. 
 
 work_book.save(f'{prefix_path}{database_name}DasFacts.xlsx')
 connection.close()
