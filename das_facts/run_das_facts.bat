@@ -2,9 +2,12 @@
 TITLE Generate Das Facts Sheet
 COLOR 7C
 
+ECHO.
+ECHO. 
+
 py Export_SysParams.py
 
 ECHO.
 ECHO.
-ECHO Das Facts Sheet was generated in the %USERPROFILE%\DESKTOP\Generated_Scripts\databasename Directory. 
+
 PAUSE
