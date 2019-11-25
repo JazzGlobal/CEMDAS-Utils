@@ -1,7 +1,7 @@
 # Queries the SYS_PARAMS table of a specified database
 # Exports the results to a spreadsheet to generate the DasFactsSheet
 
-import sys, os, openpyxl, pymssql
+import sys, os, openpyxl, pymssql, datetime
 from openpyxl.utils import get_column_letter
 
 database_name = input('Enter the name of the Sys1 database (Without Sys1): ')
@@ -64,5 +64,13 @@ for parameter in range(len(params_to_export)):
         column_letter = get_column_letter(db_field+1)
         sheet[f'{column_letter}{parameter+2}'] = list(params_to_export[parameter].values())[db_field] # We use x+2 as the index to start AFTER Row 1. 
 
-work_book.save(f'{prefix_path}{database_name}DasFacts.xlsx')
+try:
+    work_book.save(f'{prefix_path}{database_name}DasFacts.xlsx')
+except Exception as err:
+    error_string = f'ERROR: An error occurred while saving the {database_name}DasFacts.xlsx. It is likely that it already existed and was open in Excel. Close Excel and try again.'
+    print(error_string)
+    log = open(f'{prefix_path}das_facts.log', 'a')
+    log.write(f'{str(datetime.datetime.now())}\n')
+    log.write('--------------------------------------\n')
+    log.write(f'{error_string}\n\n')
 connection.close()
