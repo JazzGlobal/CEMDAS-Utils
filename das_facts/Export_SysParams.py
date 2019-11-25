@@ -4,22 +4,22 @@
 import sys, os, openpyxl, pymssql
 from openpyxl.utils import get_column_letter
 
-database = input('Enter the name of the Sys1 database (Without Sys1)')
+databaseName = input('Enter the name of the Sys1 database (Without Sys1)')
 conn = pymssql.connect(
                 server=f"{os.getlogin()}\\SQLEXPRESS",
                 port=1433,
                 user="sa",
                 password="sa123",
-                database=(f'{database}Sys1'))
+                database=(f'{databaseName}Sys1'))
 
 prefix_path = f'C:\\Users\\{os.getlogin()}\\Desktop\\Generated_Scripts\\'
 worksheet_path = f'{prefix_path}template_DasFacts.xlsx'
 wb = openpyxl.load_workbook(worksheet_path)
 sheet = wb['Sheet1']
 cursor = conn.cursor()
-cursor.execute('SELECT * FROM SYS_PARAMS')
 
 def GetSystemParameters():
+    cursor.execute('SELECT * FROM SYS_PARAMS')
     sqlData = []
     for row in cursor.fetchall():  
         dataRow = { 
@@ -46,5 +46,5 @@ for x in range(len(toExport)):
         column_letter = get_column_letter(y+1)
         sheet[f'{column_letter}{x+2}'] = list(toExport[x].values())[y] # We use x+2 as the index to start AFTER Row 1. 
 
-wb.save(f'{prefix_path}newDasFacts.xlsx')
+wb.save(f'{prefix_path}{databaseName}DasFacts.xlsx')
 conn.close()
