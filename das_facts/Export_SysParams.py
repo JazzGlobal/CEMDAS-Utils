@@ -28,7 +28,7 @@ try: # Attempt to create directory. Continues script if directory already exists
 except FileExistsError:
     print(f'Directory {prefix_path} already exists, continuing script.')
 
-workbook_path = f'{prefix_path_parent}template_DasFacts.xlsx' # Path of workbook template. 
+workbook_path = f'template_DasFacts.xlsx' # Path of workbook template. 
 work_book = openpyxl.load_workbook(workbook_path)
 sheet = work_book['Sheet1']
 cursor = connection.cursor()
