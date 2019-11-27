@@ -11,7 +11,7 @@ COLOR 7C
 
 :BACKUP_DATABASE
     SET /P M=Enter name of database for backup: 
-    SET P=%USERPROFILE%\DESKTOP\%M%\
+    SET P=C:\\CEMDAS\Temp\%M%\
     ECHO.
     ECHO "Storing backup to %P%\%M%.bak"
     ECHO "If this is not desired, exit the script now by click the X button or by pressing CTRL+C"
