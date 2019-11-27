@@ -21,6 +21,12 @@ sql_string+= f'TRUNCATE TABLE SYS_LOG;\n'
 sql_string+= f'TRUNCATE TABLE ERROR_LOG;\n'
 
 # Write to SQL Script
+
+try: # Attempt to create directory. Continues script if directory already exists.
+    os.mkdir(f'{prefix_path}{sys_database_name}')
+except: 
+    print(f'Directory {prefix_path} already exists, continuing script.')
+
 script = open(f'{prefix_path}\\{sys_database_name}\\cleanup.sql', 'w+')
 script.write(f'{sql_string}')
 
