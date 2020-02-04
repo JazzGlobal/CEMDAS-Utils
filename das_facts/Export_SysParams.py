@@ -37,6 +37,22 @@ def GetSystemParameters():
     cursor.execute('SELECT * FROM SYS_PARAMS')
     sysParamData = []
     for row in cursor.fetchall():  
+        data_source = ''
+
+        if(row[40] == 0):
+            data_source = 'Spare'
+
+        if(row[40] == 1):
+            data_source = 'Historical'
+
+        if(row[40] == 2):
+            data_source = 'Monitored'
+
+        if(row[40] == 3): 
+            data_source = 'Calculated' 
+
+        print(str(row[40]))
+        print(data_source)
         sqlRow = { 
             # Adding the correct SQL Database field into our dictionary. 
             # FORMAT:
@@ -50,7 +66,7 @@ def GetSystemParameters():
             "lower_limit_eu": row[25],
             "upper_limit_eu": row[26],
             "unit_conversion": row[39],
-            "data_source": row[40],
+            "data_source": data_source,
         }
         sysParamData.append(sqlRow)
     return sysParamData
