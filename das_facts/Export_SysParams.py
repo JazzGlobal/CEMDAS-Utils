@@ -37,6 +37,13 @@ def GetSystemParameters():
     cursor.execute('SELECT SYS_PARAMS.PARAMETER_INDEX, SYS_PARAMS.PARAMETER_NAME, SYS_PARAMS.SITE, SYS_PARAMS.FORMULA, SYS_PARAMS.LOWER_LIMIT_CU, SYS_PARAMS.UPPER_LIMIT_CU, SYS_PARAMS.LOWER_LIMIT_EU, SYS_PARAMS.UPPER_LIMIT_EU, SYS_PARAMS.UNIT_CONVERSION, SYS_PARAMS.DATA_SOURCE, ALM_CONFIG.LOW_LIMIT_IND, ALM_CONFIG.HI_LIMIT_IND ,ALM_CONFIG.HIHI_LIMIT_IND FROM SYS_PARAMS LEFT JOIN ALM_CONFIG on SYS_PARAMS.PARAMETER_INDEX=ALM_CONFIG.PARAMETER_INDEX')
     sysParamData = []
     for row in cursor.fetchall():  
+
+        splitString = row[1].split(',')
+        if(len(splitString) > 1): 
+            splitString = splitString[1]
+        else: 
+            splitString = 'None'
+
         data_source = ''
 
         if(row[9] == 0):
@@ -57,6 +64,7 @@ def GetSystemParameters():
             # Key in the dictionary: SQL Database Column data.
             "param_index": row[0],
             "param_name": row[1],
+            "param_units": splitString,
             "site": row[2],
             "calc_id": row[3],
             "lower_limit_cu": row[4],
