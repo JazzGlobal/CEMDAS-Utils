@@ -34,25 +34,23 @@ sheet = work_book['Sheet1']
 cursor = connection.cursor()
 
 def GetSystemParameters():
-    cursor.execute('SELECT * FROM SYS_PARAMS')
+    cursor.execute('SELECT SYS_PARAMS.PARAMETER_INDEX, SYS_PARAMS.PARAMETER_NAME, SYS_PARAMS.SITE, SYS_PARAMS.FORMULA, SYS_PARAMS.LOWER_LIMIT_CU, SYS_PARAMS.UPPER_LIMIT_CU, SYS_PARAMS.LOWER_LIMIT_EU, SYS_PARAMS.UPPER_LIMIT_EU, SYS_PARAMS.UNIT_CONVERSION, SYS_PARAMS.DATA_SOURCE, ALM_CONFIG.LOW_LIMIT_IND, ALM_CONFIG.HI_LIMIT_IND ,ALM_CONFIG.HIHI_LIMIT_IND FROM SYS_PARAMS LEFT JOIN ALM_CONFIG on SYS_PARAMS.PARAMETER_INDEX=ALM_CONFIG.PARAMETER_INDEX')
     sysParamData = []
     for row in cursor.fetchall():  
         data_source = ''
 
-        if(row[40] == 0):
+        if(row[9] == 0):
             data_source = 'Spare'
 
-        if(row[40] == 1):
+        if(row[9] == 1):
             data_source = 'Historical'
 
-        if(row[40] == 2):
+        if(row[9] == 2):
             data_source = 'Monitored'
 
-        if(row[40] == 3): 
+        if(row[9] == 3): 
             data_source = 'Calculated' 
 
-        print(str(row[40]))
-        print(data_source)
         sqlRow = { 
             # Adding the correct SQL Database field into our dictionary. 
             # FORMAT:
@@ -60,13 +58,16 @@ def GetSystemParameters():
             "param_index": row[0],
             "param_name": row[1],
             "site": row[2],
-            "calc_id": row[13],
-            "lower_limit_cu": row[23],
-            "upper_limit_cu": row[24],
-            "lower_limit_eu": row[25],
-            "upper_limit_eu": row[26],
-            "unit_conversion": row[39],
+            "calc_id": row[3],
+            "lower_limit_cu": row[4],
+            "upper_limit_cu": row[5],
+            "lower_limit_eu": row[6],
+            "upper_limit_eu": row[7],
+            "unit_conversion": row[8],
             "data_source": data_source,
+            "low_limit": row[10],
+            "hi_limit": row[11],
+            "hi_hi_limit": row[12]
         }
         sysParamData.append(sqlRow)
     return sysParamData
