@@ -8,7 +8,7 @@ try: # Attempt to create directory. Continues script if directory already exists
 except FileExistsError:
     print(f'Directory {prefix_path} already exists, continuing script.')
 
-sys_database_name = input('Enter the name of the Sys1 database, omit the \'Sys2\': \n')
+sys_database_name = input('Enter the name of the Sys2 database, omit the \'Sys2\': \n')
 alarm_end_date = input("Enter the data of the first invalid alarm (YYYY-MM-DD): \n")
 calibration_end_date = input("Enter the data of the first invalid calibration (YYYY-MM-DD): \n")
 
